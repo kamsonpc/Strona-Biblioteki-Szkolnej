@@ -19,6 +19,7 @@ if(isset($_POST['folder-submit']))
       $db=mysql_select_db($db_name,$polaczenie) or die('Nie mogę połączyć się z bazą danych<br />Błąd: '.mysql_error()); 
       $name = $_POST['folder-name'];
       $content = $_POST['folder-content'];
+      
       $query = "INSERT INTO `folder` (`id_folder`, `name`, `content`) VALUES (NULL,'$name','$content')";
       if(mysql_query($query))
       {

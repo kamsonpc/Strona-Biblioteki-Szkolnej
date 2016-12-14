@@ -139,7 +139,7 @@ h3 {
   font-size: 1.2em;
 }
 .folder-text {
-  text-align: center;
+  white-space: pre-line;
 }
 .f-header {
   letter-spacing: 1.2px;

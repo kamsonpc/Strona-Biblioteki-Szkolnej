@@ -65,11 +65,11 @@
                 die("Niepowodzenie polaczenia"."<br>"."Error".mysql_error());
             $db=mysql_select_db($db_name,$polaczenie) or die('Nie mogę połączyć się z bazą danych<br />Błąd: '.mysql_error()); ;
 
-            $query = mysql_query("select * from news order by id desc limit 0,5");
+            $query = mysql_query("select * from news order by id desc limit 0,10");
             $naz="";
             while($rekord = mysql_fetch_array($query))
             {
-                $naz .= '<li><a href="news.php?id='.$rekord[0].'"><i class="glyphicon glyphicon-pencil"></i>  '.$rekord[1].'</a></li>'; 
+                $naz .= '<li><i class="glyphicon glyphicon-pencil"></i>  '.$rekord[1].'</li>'; 
             }
             echo '<ul class="ul-news">'.$naz.'</ul>'; 
 
