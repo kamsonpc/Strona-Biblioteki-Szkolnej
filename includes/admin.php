@@ -1,44 +1,79 @@
 <?php
-if(isset($_POST['logout']))
-{
-      $_SESSION['zalogowany']=false;
-}
+      include('includes/panel.php');
 ?>
-
 <?php
 
-
-if($_SESSION['zalogowany']!=true)
-{
-      header("Location:http://localhost/?url=admin"); 
-}
-
-?>
-<div class="row">
-      <br>
-      <br>
-      <div class="col-md-4 col-sm-4 col-xs-12">
-            <a href="http://localhost/?url=admin-articles" class="btn btn-primary col-md-12">Artykuły</a>
-      </div>
-      <div class="col-md-4 col-sm-4 col-xs-12">
-            <a href="http://localhost/?url=admin-folder" class="btn btn-success col-md-12">Teczki</a>
-      </div>
-      <div class="col-md-4 col-sm-4 col-xs-12">
-            <form action="" method="post">
-                  <button class="btn btn-danger col-md-12" type="submit" name="logout">Wyloguj się </button>
-            </form>
-      </div>
-</div>
-<br>
-<br>
-<?php
-
-
-      if($_SESSION['zalogowany']!=true)
+if(isset($_POST['submit-article']))
+{     $form_is_ready=true;
+      $header=$_POST['article-head'];
+      $content=$_POST['article-content'];
+      $autor=$_POST['autor'];
+      if($autor="")
       {
-            header("Location:http://localhost/?url=admin"); 
+            $autor="Admin";
       }
+      $plik=$_FILES['plik'];
+      $plik_tmp = $_FILES['plik']['tmp_name'];
+      $plik_nazwa = $_FILES['plik']['name']; 
+      @$check=getimagesize($_FILES['plik']['tmp_name']);
+      if($check !== false)
+      {
+            //echo "Wybrany plik jest zdjęciem - " . $check["mime"] . ".";
+            
+      }
+      else
+      {
+            echo "<br><br><div class='alert alert-danger'>
+              <strong>Bład!</strong> Plik nie jest zdjeciem.
+              </div>";
+            $form_is_ready=false;
+      }
+       if($_FILES['plik']['size']>500000)
+       {
+             $form_is_ready=false;
+             echo "<br><br><div class='alert alert-danger'>
+              <strong>Bład!</strong> Plik za duży.
+              </div>";
+       }
+      if(is_uploaded_file($plik_tmp)&&($form_is_ready==true))
+      {       
+            move_uploaded_file($plik_tmp, "upload/$plik_nazwa"); 
+            $img_src="upload/$plik_nazwa";
+      }
+      else
+      {
+            echo "<br><br><div class='alert alert-danger'>
+              <strong>Bład!</strong>Nie wrzucono pliku.
+              </div>";
+      }
+      require_once 'includes/dbconnect.php';
 
+      $polaczenie=mysql_connect($host,$db_user,$db_password) 
+            or 
+            die("Niepowodzenie polaczenia"."<br>"."Error".mysql_error());
+      $db=mysql_select_db($db_name,$polaczenie) or die('Nie mogę połączyć się z bazą danych<br />Błąd: '.mysql_error());
+      $date = date("Y-m-d");      
+
+      @$query = "INSERT INTO `news` (`id`, `nazwa`, `data`, `autor`, `tresc`,`img`) VALUES (NULL, '$header', '$date', '$autor', '$content','$img_src')";
+      
+       if($form_is_ready==true)
+       {
+            if(mysql_query($query))
+            {
+                  echo "<br><br><div class='alert alert-success'>
+                       <strong>Sukcess!</strong> Dodano artykuł.
+                      </div>";
+
+            }
+      }
+      else
+      {
+                  echo "<br><br><div class='alert alert-danger'>
+                    <strong>Bład!</strong> Nie dodano artykułu.
+                    </div>";
+
+      }
+}   
 ?>
 <div class="jumbotron">
 <h2><i class="glyphicon glyphicon-pencil"></i> Dodawanie News'a</h2>
@@ -74,52 +109,5 @@ if($_SESSION['zalogowany']!=true)
     </div>
     <button class="btn btn-primary center-block" name="submit-article" type="submit">Dodaj artykuł</button>      
 </form>
-<?php
 
-      if(isset($_POST['submit-article']))
-      {   
-       $header=$_POST['article-head'];
-       $content=$_POST['article-content'];
-       $autor=$_POST['autor'];
-
-       $plik=$_FILES['plik'];
-       $plik_tmp = $_FILES['plik']['tmp_name'];
-       $plik_nazwa = $_FILES['plik']['name']; 
-       if(is_uploaded_file($plik_tmp))
-       {       
-             move_uploaded_file($plik_tmp, "upload/$plik_nazwa"); 
-             $img_src="upload/$plik_nazwa";
-       }
-       else
-       {
-             echo "<br><br><div class='alert alert-danger'>
-              <strong>Bład!</strong> wrzucono pliku.
-              </div>";
-       }
-       require_once 'includes/dbconnect.php';
-
-       $polaczenie=mysql_connect($host,$db_user,$db_password) 
-             or 
-             die("Niepowodzenie polaczenia"."<br>"."Error".mysql_error());
-       $db=mysql_select_db($db_name,$polaczenie) or die('Nie mogę połączyć się z bazą danych<br />Błąd: '.mysql_error()); 
-
-       $query = "INSERT INTO `news` (`id`, `nazwa`, `data`, `autor`, `tresc`,`img`) VALUES (NULL, '$header', '2016-12-14 00:00:00', '$autor', '$content','$img_src')";
-       if(mysql_query($query))
-       {
-             echo "<br><br><div class='alert alert-success'>
-                 <strong>Sukcess!</strong> Dodano artykuł.
-                </div>";
-
-       }
-       else
-       {
-             echo "<br><br><div class='alert alert-danger'>
-              <strong>Bład!</strong> Nie dodano artykułu.
-              </div>";
-
-       }
-      }   
-
-
-?>
 </div>
