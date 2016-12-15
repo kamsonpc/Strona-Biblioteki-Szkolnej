@@ -18,7 +18,7 @@
              if($rows!=0)
              {    
                    $_SESSION['zalogowany']=true;
-                   header("Location:http://localhost/?url=panel"); 
+                   header("Location:http://localhost/?url=admin-articles"); 
 
              }
              else
@@ -26,7 +26,7 @@
                    $_SESSION['login_e']="<div class='alert alert-danger'>
                                           <strong>Nie zalogowano</strong>.
                                           </div>";
-                   header("Location:http://localhost/?url=panel"); 
+                   header("Location:http://localhost/?url=admin"); 
              }
             }
             else

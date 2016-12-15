@@ -40,8 +40,8 @@
                         <td>Piątek</td> 
                   </tr>
                   <tr>
-                        <td>8<sup>00</sup> - 14<sup>00</sup></td>
                         <td>10<sup>00</sup> - 16<sup>00</sup></td>
+                        <td>8<sup>00</sup> - 14<sup>00</sup></td>
                         <td>8<sup>00</sup> - 14<sup>00</sup></td>
                         <td>10<sup>00</sup> - 16<sup>00</sup></td>
                         <td>7<sup>00</sup> - 13<sup>00</sup></td>
@@ -59,8 +59,8 @@
                         <td>Piątek</td> 
                   </tr>
                   <tr>
-                        <td>10<sup>00</sup> - 16<sup>00</sup></td>
                         <td>8<sup>00</sup> - 14<sup>00</sup></td>
+                        <td>10<sup>00</sup> - 16<sup>00</sup></td>
                         <td>7<sup>00</sup> - 13<sup>00</sup></td>
                         <td>8<sup>00</sup> - 14<sup>00</sup></td>
                         <td>10<sup>00</sup> - 16<sup>00</sup></td>

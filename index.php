@@ -25,7 +25,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 logo-div">
-            <h2 class="logo">BIBLIOTEKA ZST LEŻAJSK</h2>
+            <h2 class="logo">BIBLIOTEKA ZESPOŁU SZKÓŁ TECHNICZNYCH W LEŻAJSKU</h2>
         </div>
     </div>
 </div>
@@ -121,7 +121,7 @@
         <a href="https://polona.pl/"><img src="img/polona.png" alt="polona" class="img-responsive"></a>
         <a href="http://culture.pl/"><img src="img/edukacja_cyfrowa.png" alt="culture.pl" class="img-responsive"></a>
         <a href="http://culture.pl/"><img src="img/culture.jpg" alt="culture.pl" class="img-responsive"></a>
-        <h1 class="books-slider">Polecane książki :</h1>
+        <h1 class="books-slider">Nowości Czytelnicze :</h1>
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
         <!-- Ksiazki -->
