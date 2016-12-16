@@ -109,6 +109,9 @@
             case "teczki":
                     include("includes/teczki.php");
             break;
+            case "admin-books":
+                    include("includes/admin-books.php");
+            break;
             default:
                 include("includes/home.php");
             break;
@@ -158,7 +161,7 @@
                       <i class="glyphicon glyphicon-earphone"></i>  (17) 240 61 23
                 </div>
                 <div class="col-md-4 col-xs-12 text-centered">
-                      <i class="glyphicon glyphicon-envelope"></i>   bibliozst@gmail.com
+                      <i class="glyphicon glyphicon-envelope"></i>   biblioteka@zst.lezajsk.pl
                 </div>
             </div>
             <div class="row">
