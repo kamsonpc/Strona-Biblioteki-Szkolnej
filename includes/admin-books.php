@@ -3,6 +3,15 @@ include("includes/panel.php");
 ?>
 <div class="jumbotron">
 <h2>Aktulane Nowości:</h2>
+<form action="" method="post">
+      <div class="table-responsive">
+            <table class="table">
+                  <tr>
+                        <th>ID</th>
+                        <th>Nazwa</th>
+                        <th>Autor</th>
+                  </tr>
+
 <?php
 require_once 'includes/dbconnect.php';
 
@@ -15,14 +24,38 @@ $books_list="";
      $result = mysql_query($query);
       while($rekord = mysql_fetch_array( $result ))
       {  
-            $books_list .= '<div id='.$rekord[0].' class="checkbox">
-              <label><input type="checkbox" value="">'.$rekord[1].'</label>
-            </div>'; 
+            $books_list .= '<tr><td><input name='.$rekord[0].' type="checkbox" name="check_list[]" value=""></td><td>'.$rekord[1].'</td><td>'.$rekord[2].'</td></tr>';
       }
       echo $books_list;
 mysql_close($polaczenie);
 ?>
+                  
+            </table>
+      </div>
+<button class="btn btn-danger col-md-12" type="submit" name="delete">Usuń wybrane</button>
+</form>
 </div>
+<?php
+if(isset($_POST['delete']))
+{
+      require_once 'includes/dbconnect.php';
+
+      $polaczenie=mysql_connect($host,$db_user,$db_password) 
+            or 
+            die("Niepowodzenie polaczenia"."<br>"."Error".mysql_error());
+      $db=mysql_select_db($db_name,$polaczenie) or die('Nie mogę połączyć się z bazą danych<br />Błąd: '.mysql_error());     
+      foreach ($_POST as $name => $value)
+      {     if($name !='delete')
+            {
+            $sql = "DELETE FROM `books` WHERE id_book=$name";
+            mysql_query($sql);
+            }
+           
+      }
+      mysql_close($polaczenie);
+      header('Location: '.$_SERVER['REQUEST_URI']);
+}
+?>
 <?php
 if(isset($_POST['submit-book']))
 {     
@@ -30,7 +63,7 @@ if(isset($_POST['submit-book']))
       $name=$_POST['book-name'];
       $describe=$_POST['book-describe'];
       $autor=$_POST['book-author'];
-      if($autor="")
+      if($autor=="")
       {
             $autor="Nieznany";
       }

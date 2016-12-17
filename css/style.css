@@ -93,7 +93,6 @@ h3 {
   border-radius: 0px 0px 10px 10px;
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 1.2em;
-  white-space: pre-line;
 }
 .article-other {
   line-height: 40px;
@@ -140,8 +139,11 @@ h3 {
   font-size: 1.2em;
 }
 .folder-text {
-  white-space: pre-line;
+  white-space: pre-wrap;
 }
 .f-header {
   letter-spacing: 1.2px;
+}
+.img-slider:hover {
+  cursor: pointer;
 }

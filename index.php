@@ -129,18 +129,40 @@
 
         <!-- Ksiazki -->
           <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                  <img src="img/ksiazka3.jpg" alt="zdjecie biblioteki">
-                </div>
+                <?php
+                require_once 'includes/dbconnect.php';
 
-                <div class="item ">
-                 <img  src="img/ksiazka1.jpg" alt="zdjecie biblioteki">
-                </div>
+                $polaczenie=mysql_connect($host,$db_user,$db_password) 
+                      or 
+                      die("Niepowodzenie polaczenia"."<br>"."Error".mysql_error());
+                $db=mysql_select_db($db_name,$polaczenie) or die('Nie mogę połączyć się z bazą danych<br />Błąd: '.mysql_error()); ;
 
-                <div class="item">
-                  <img src="img/ksiazka2.jpg" alt="zdjecie biblioteki">
-                </div>
-              </div>
+                $query = mysql_query("select * from books");
+                $slider="";
+                $first_book=false;
+                while($rekord = mysql_fetch_array($query))
+                {    
+                      if($first_book==false)
+                      {       
+                            $slider .= "<div class='item active'>
+                            <img class='img-responsive img-slider' src='$rekord[4]' alt='zdjecie biblioteki'>
+                            </div>"; 
+                            $first_book=true;
+                      }
+                      else
+                      {
+                            $slider .= "<div class='item'>
+                            <img class='img-responsive img-slider'  src='$rekord[4]' alt='zdjecie biblioteki'>
+                            </div>";  
+                      }
+              
+                }
+                echo $slider; 
+
+                mysql_close($polaczenie);
+                
+                ?>
+            </div>
             </div>
         </div>
     </div>         
