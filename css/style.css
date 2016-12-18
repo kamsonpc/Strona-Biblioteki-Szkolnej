@@ -147,3 +147,9 @@ h3 {
 .img-slider:hover {
   cursor: pointer;
 }
+.dropdown-menu {
+  background: #c96435 !important;
+}
+.menu > .open {
+  background: #c96435 !important;
+}

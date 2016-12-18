@@ -41,7 +41,18 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
             <li class="menu"><a href="http://localhost/?url=home"><i class="glyphicon glyphicon-home"></i> Home</a></li>
-        <li class="menu"><a href="#"><i class="glyphicon glyphicon-book"></i> Zbiory</a></li>
+            <li class="menu">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="glyphicon glyphicon-home"></i> Zbiory
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                       <ul>
+                             <li class="menu"><a class="dropdown-item" href="http://localhost/?url=zbiory-ksiazki">Książki</a></li>
+                        <li class="menu"><a class="dropdown-item" href="#">Czasopisma</a></li>
+                        <li class="menu"><a class="dropdown-item" href="#">Multimedia</a></li>
+                        <li class="menu"><a class="dropdown-item" href="#">Filmoteka</a></li>
+                        </ul>
+                  </div>
             <li class="menu"><a href="http://localhost/?url=reading"><i class="glyphicon glyphicon-bookmark"></i> Lektury</a></li> 
             <li class="menu"><a href="http://localhost/?url=teczki"><i class="glyphicon glyphicon-education"></i> Matura</a></li>
             <li class="menu"><a href="http://localhost/?url=links"><i class="glyphicon glyphicon-link"></i> Linki</a></li> 
@@ -56,25 +67,6 @@
               <h1 class="books-slider"> Godziny Otwarcia:</h1>
              
               <div class="text-center"> <i class="glyphicon glyphicon-time"></i> <b>7<sup>00</sup></b> - <b>16<sup>00</sup></b></div>
-            <h1 class="books-slider">Najnowsze Tematy</h2>
-<?php
-            require_once 'includes/dbconnect.php';
-
-            $polaczenie=mysql_connect($host,$db_user,$db_password) 
-                or 
-                die("Niepowodzenie polaczenia"."<br>"."Error".mysql_error());
-            $db=mysql_select_db($db_name,$polaczenie) or die('Nie mogę połączyć się z bazą danych<br />Błąd: '.mysql_error()); ;
-
-            $query = mysql_query("select * from news order by id desc limit 0,10");
-            $naz="";
-            while($rekord = mysql_fetch_array($query))
-            {
-                $naz .= '<li><i class="glyphicon glyphicon-pencil"></i>  '.$rekord[1].'</li>'; 
-            }
-            echo '<ul class="ul-news">'.$naz.'</ul>'; 
-
-            mysql_close($polaczenie);
-?>
         </div>   
         <div id="content" class="col-md-8">
 <?php
@@ -109,8 +101,23 @@
             case "teczki":
                     include("includes/teczki.php");
             break;
+            case "zbiory-ksiazki":
+                    include("includes/zbiory-ksiazki.php");
+            break;
+            case "zbiory-czasopisma":
+                    include("includes/zbiory-czasopisma.php");
+            break;
+            case "zbiory-filmoteka":
+                    include("includes/zbiory-filmoteka.php");
+            break;
+            case "zbiory-multimedia":
+                    include("includes/zbiory-multimedia.php");
+            break;
             case "admin-books":
                     include("includes/admin-books.php");
+            break;
+            case "book":
+                    include("includes/book.php");
             break;
             default:
                 include("includes/home.php");
@@ -141,26 +148,24 @@
                 $slider="";
                 $first_book=false;
                 while($rekord = mysql_fetch_array($query))
-                {    
+                {     $adres="http://localhost/?url=book&&id=".$rekord[0];
                       if($first_book==false)
                       {       
                             $slider .= "<div class='item active'>
-                            <img class='img-responsive img-slider' src='$rekord[4]' alt='zdjecie biblioteki'>
-                            </div>"; 
+                            <a href='$adres'><img class='img-responsive img-slider'  src='$rekord[4]' alt='zdjecie biblioteki'></a>
+                            </div>";
                             $first_book=true;
                       }
                       else
                       {
                             $slider .= "<div class='item'>
-                            <img class='img-responsive img-slider'  src='$rekord[4]' alt='zdjecie biblioteki'>
+                            <a href='$adres'><img class='img-responsive img-slider'  src='$rekord[4]' alt='zdjecie biblioteki'></a>
                             </div>";  
                       }
               
                 }
                 echo $slider; 
-
                 mysql_close($polaczenie);
-                
                 ?>
             </div>
             </div>
