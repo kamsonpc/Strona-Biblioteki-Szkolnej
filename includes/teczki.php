@@ -8,7 +8,7 @@ die("Niepowodzenie polaczenia"."<br>"."Error".mysql_error());
 $db=mysql_select_db($db_name,$polaczenie) or die('Nie mogę połączyć się z bazą danych<br />Błąd: '.mysql_error()); 
 
 $query = mysql_query("SELECT * FROM `folder`");
-$folder="<div class='folder jumbotron'><h2>Teczki Tematyczne 'Cogito'</h2></div>";
+$folder="<h2>Teczki Tematyczne 'Cogito'</h2><br><br>";
 while($rekord = mysql_fetch_array($query))
 {   
  $folder .= '<div class="folder jumbotron">

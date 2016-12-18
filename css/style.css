@@ -148,8 +148,11 @@ h3 {
   cursor: pointer;
 }
 .dropdown-menu {
-  background: #c96435 !important;
+  background: #dfa285 !important;
 }
 .menu > .open {
-  background: #c96435 !important;
+  background: #dfa285 !important;
+}
+.menu .open {
+  background: #dfa285 !important;
 }

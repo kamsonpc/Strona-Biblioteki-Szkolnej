@@ -53,7 +53,6 @@ if(isset($_POST['delete']))
            
       }
       mysql_close($polaczenie);
-      header('Location: '.$_SERVER['REQUEST_URI']);
 }
 ?>
 <?php

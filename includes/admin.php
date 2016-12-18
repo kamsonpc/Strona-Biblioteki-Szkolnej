@@ -47,15 +47,14 @@ if(isset($_POST['delete']))
       $db=mysql_select_db($db_name,$polaczenie) or die('Nie mogę połączyć się z bazą danych<br />Błąd: '.mysql_error());     
       foreach ($_POST as $name => $value)
       {     if($name !='delete')
-      {
-            $sql = "DELETE FROM `books` WHERE id_book=$name";
+            {
+            $sql = "DELETE FROM `news` WHERE id=$name";
             mysql_query($sql);
-      }
+            }
 
       }
       mysql_close($polaczenie);
-      header('Location: '.$_SERVER['REQUEST_URI']);
-}
+      }
 ?>
 
 
