@@ -150,9 +150,3 @@ h3 {
 .dropdown-menu {
   background: #dfa285 !important;
 }
-.menu > .open {
-  background: #dfa285 !important;
-}
-.menu .open {
-  background: #dfa285 !important;
-}
