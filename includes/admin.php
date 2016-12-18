@@ -66,7 +66,7 @@ if(isset($_POST['submit-article']))
       $header=$_POST['article-head'];
       $content=$_POST['article-content'];
       $autor=$_POST['autor'];
-      if($autor="")
+      if($autor=="")
       {
             $autor="Admin";
       }
