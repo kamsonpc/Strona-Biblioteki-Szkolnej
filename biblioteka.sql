@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 16 Gru 2016, 18:03
+-- Czas generowania: 18 Gru 2016, 19:54
 -- Wersja serwera: 10.1.19-MariaDB
 -- Wersja PHP: 5.5.38
 
@@ -39,10 +39,8 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id_book`, `name`, `author`, `describe`, `img_src`) VALUES
-(2, 'Cybulski. PodwÃ³jne salto', '', 'Brawurowa biografia czÅ‚owieka, ktÃ³ry zostaÅ‚ legendÄ… BYÅO ICH DWÃ“CH.Pierwszego znajÄ… wszyscy: â€žpolski James Deanâ€, najwiÄ™kszy gwiazdor filmowy epoki, obiekt westchnieÅ„ tysiÄ™cy kobiet. Kultowy Maciek CheÅ‚micki w Popiele i diamencie. Gini', 'img/books/517724-352x500.jpg'),
-(3, 'Fanfik', '', 'Zgodnie z zaleceniem MEN-u KaÅ¼dy uczeÅ„ oraz rogal, Aby nie marnowaÄ‡ tlenu, Ma byÄ‡ czymÅ› na ksztaÅ‚t pieroga. Sama sÅ‚odycz, garnir z krost, Jedna waga, jeden wzrost, Pulchne lico, grzbiet garbaty, W Å›rodku pulpa i opiaty. W poznaÅ„skim liceum t', 'img/books/523699-352x500.jpg'),
-(4, 'Muza', '', 'Åšwiat wielkiej sztuki, jeszcze wiÄ™kszych namiÄ™tnoÅ›ci i tajemniczy obraz, ktÃ³ry skrywa wiÄ™cej niÅ¼ tysiÄ…c sÅ‚Ã³w. Po jednej stronie pÅ‚Ã³tna dziewczyna trzyma odciÄ™tÄ… gÅ‚owÄ™ swojej siostry, po drugiej âˆ’ lew, ktÃ³ry za chwilÄ™ poderwie siÄ™', 'img/books/533655-352x500.jpg'),
-(5, 'Rok krÃ³lika', '', 'Autorka bestsellerowych romansÃ³w historycznych Julia Mrok kieruje siÄ™ dwoma pragnieniami: rozkoszy i opowieÅ›ci. By je zaspokoiÄ‡, z nikim siÄ™ nie liczy i nie zwaÅ¼a na skutki swoich poczynaÅ„, ale kiedy posuwa siÄ™ za daleko, w koÅ„cu musi zniknÄ', 'img/books/526787-352x500.jpg');
+(8, 'Zostaw mnie', 'Gayle Forman', 'Maribeth Klein to wiecznie zabiegana pracujÄ…ca matka. Wszystko co wiÄ…Å¼e siÄ™ z domem, z mÄ™Å¼em i z dzieÄ‡mi spoczywa na jej barkach â€“ nawet w czasie rekonwalescencji po zawale zwolniona jest jedynie od obowiÄ…zkÃ³w zawodowych. W Maribeth Klein ', 'img/books/532919-352x500.jpg'),
+(9, 'Cybulski. PodwÃ³jne salto', 'Dorota KaraÅ›', 'Brawurowa biografia czÅ‚owieka, ktÃ³ry zostaÅ‚ legendÄ…BYÅO ICH DWÃ“CH.Pierwszego znajÄ… wszyscy: â€žpolski James Deanâ€, najwiÄ™kszy gwiazdor filmowy epoki, obiekt westchnieÅ„ tysiÄ™cy kobiet. Kultowy Maciek CheÅ‚micki w Popiele i diamencie. Ginie', 'img/books/517724-352x500.jpg');
 
 -- --------------------------------------------------------
 
@@ -86,8 +84,7 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id`, `nazwa`, `data`, `autor`, `tresc`, `img`) VALUES
-(20, 'Konkurs â€žNapisz to zwiÄ™Åºlejâ€', '2016-12-15', 'Kamil', 'Konkurs â€žNapisz to zwiÄ™Åºlejâ€ JednÄ… z imprez zorganizowanÄ… w ramach MiÄ™dzynarodowego MiesiÄ…ca Bibliotek Szkolnych, byÅ‚ konkurs â€žNapisz to zwiÄ™Åºlejâ€. W zmaganiach, ktÃ³re miaÅ‚y miejsce 19 paÅºdziernika w czytelni biblioteki, uczestniczyÅ‚y dwuosobowe reprezentacje klas maturalnych, ktÃ³re musiaÅ‚y wykazaÄ‡ siÄ™ umiejÄ™tnoÅ›ciami streszczania rÃ³Å¼nych form wypowiedzi. Zadania konkursowe wymagaÅ‚y bowiem m.in.: przedstawienia koledze treÅ›ci filmu przy uÅ¼yciu 160 znakÃ³w pisarskich (tj. tylu, ile liczy jeden SMS), uÅ‚oÅ¼enia tytuÅ‚Ã³w prasowych, streszczajÄ…cych podane wiadomoÅ›ci, zredagowania lidÃ³w do tekstÃ³w prasowych, napisania streszczenia. ', 'upload/napisztozwiezlej-Resizer-_400x600Q100.jpg'),
-(21, 'Bierzemy udziaÅ‚ w biciu rekord', '2016-12-15', 'Kamil', 'Na zaproszenie organizatora â€“ Miejskiej Biblioteki Publicznej w LeÅ¼ajsku, stu uczniÃ³w naszej szkoÅ‚y wraz z opiekunami, wziÄ™Å‚o udziaÅ‚ w biciu rekordu LeÅ¼ajska w moÅ¼liwie najwiÄ™kszej liczbie osÃ³b czytajÄ…cych na wolnym powietrzu. 15 wrzeÅ›nia w wÄ…wozie przy placu targowym zebraÅ‚o siÄ™ 1005 osÃ³b, ktÃ³re przez minutÄ™ gÅ‚oÅ›no czytaÅ‚y przyniesione ze sobÄ… ksiÄ…Å¼ki, e â€“ booki, gazety i podrÄ™czniki. Oto niektÃ³re tytuÅ‚y przyniesione przez naszych uczniÃ³w i opiekunÃ³w: Martin Pollack Po Galicji, Cicha 5 â€“ zbiÃ³r opowiadaÅ„ najpopularniejszych polskich pisarek, m.in. Sylwii Chutnik, Katarzyny Bondy, Nataszy Sochy, MaÅ‚gorzaty Wardy, MaÅ‚gorzaty KaliciÅ„skiej, Marian Pilot Panny szczerbate, Ransom Riggs Osobliwy dom pani Peregrine, Sanderson Brandon Droga krÃ³lÃ³w, Orson Scott Card Zaginione wrota, Tom Clancy Czerwony krÃ³lik, seria Uniwersum Metro 2033, WiesÅ‚aw Rychlicki Od matematyki do programowania. ImprezÄ™ zakoÅ„czyÅ‚o losowanie nagrÃ³d wÅ›rÃ³d uczestnikÃ³w bicia rekordu. SzczÄ™Å›cie uÅ›miechnÄ™Å‚o siÄ™ i do jednego z naszych uczniÃ³w, ktÃ³ry otrzymaÅ‚ ksiÄ…Å¼kÄ™ Cliva Cusslera Korsarz.', 'upload/czytamyrazem2016-Resizer-_400x600Q100.jpg');
+(30, 'WraÅ¼enia z finaÅ‚u WTEM', '2016-12-18', 'Kamil', '22 kwietnia odbyÅ‚ siÄ™ finaÅ‚owy etap tegorocznej edycji WTEM. WziÄ™Å‚o w nim udziaÅ‚ szesnaÅ›cie osÃ³b z caÅ‚ej Polski. NaszÄ… szkoÅ‚Ä™ reprezentowaÅ‚ uczeÅ„ klasy 2 technikum informatycznego Åukasz MÄ…czka. FinaÅ‚owy etap wymagaÅ‚ wykazania siÄ™ wiedzÄ… oraz umiejÄ™tnoÅ›ciami medialnymi, informacyjnymi i cyfrowymi. Pierwszym zadaniem byÅ‚o udzielenie pisemnych odpowiedzi na pytania z zakresu m.in. dziennikarstwa obywatelskiego, wolnych licencji, prywatnoÅ›ci, a raczej jej braku w sieci w obliczu rozwoju nowych technologii, dostÄ™pnoÅ›ci mediÃ³w, prawa autorskiego.\r\n\r\nDrugi etap to zadanie praktyczne. PolegaÅ‚o ono na stworzeniu nowego serwisu spoÅ‚ecznoÅ›ciowego. Aby wcieliÄ‡ swÃ³j pomysÅ‚ w Å¼ycie finaliÅ›ci mieli zaÅ‚oÅ¼yÄ‡ startup, zaplanowaÄ‡, jakie funkcje bÄ™dzie oferowaÅ‚o nowe narzÄ™dzie (liczyÅ‚a siÄ™ innowacyjnoÅ›Ä‡) oraz zaprojektowaÄ‡ stronÄ™ gÅ‚Ã³wnÄ…, dbajÄ…c o uÅ¼ytecznoÅ›Ä‡ i dostÄ™pnoÅ›Ä‡ serwisu, a takÅ¼e daÄ‡ odpowiedÅº na pytanie: na jakie potrzeby uÅ¼ytkownikÃ³w/uÅ¼ytkowniczek bÄ™dzie odpowiadaÅ‚ nowy serwis? Do zadaÅ„ uczestnikÃ³w naleÅ¼aÅ‚o rÃ³wnieÅ¼ opracowanie krÃ³tkiego regulaminu korzystania z serwisu. SwojÄ… uwagÄ™ mieli skupiÄ‡ na zapewnieniu uÅ¼ytkownikom bezpiecznego korzystania z nowego narzÄ™dzia i ochronÄ™ ich prywatnoÅ›ci. Na koniec finaliÅ›ci prezentowali swoje pomysÅ‚y przed komisjÄ…, ktÃ³ra ich oceniaÅ‚a.\r\n\r\nUdziaÅ‚ w finale byÅ‚ dla Åukasza cennym doÅ›wiadczeniem i sprawdzianem umiejÄ™tnoÅ›ci wystÄ…pieÅ„ przed jury. W przyszÅ‚oÅ›ci planuje wziÄ…Ä‡ udziaÅ‚ w kolejnej edycji WTEM.', 'upload/wtem-maczka-Resizer-_400x600Q100.jpg');
 
 -- --------------------------------------------------------
 
@@ -146,7 +143,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `books`
 --
 ALTER TABLE `books`
-  MODIFY `id_book` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_book` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT dla tabeli `folder`
 --
@@ -156,7 +153,7 @@ ALTER TABLE `folder`
 -- AUTO_INCREMENT dla tabeli `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
