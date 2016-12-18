@@ -45,14 +45,12 @@
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="glyphicon glyphicon-home"></i> Zbiory
                   </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                       <ul>
-                             <li class="menu"><a class="dropdown-item" href="http://localhost/?url=zbiory-ksiazki">Książki</a></li>
+                        <ul class="d-menu dropdown-menu">
+                        <li class="menu"><a class="dropdown-item" href="http://localhost/?url=zbiory-ksiazki">Książki</a></li>
                         <li class="menu"><a class="dropdown-item" href="#">Czasopisma</a></li>
                         <li class="menu"><a class="dropdown-item" href="#">Multimedia</a></li>
                         <li class="menu"><a class="dropdown-item" href="#">Filmoteka</a></li>
                         </ul>
-                  </div>
             <li class="menu"><a href="http://localhost/?url=reading"><i class="glyphicon glyphicon-bookmark"></i> Lektury</a></li> 
             <li class="menu"><a href="http://localhost/?url=teczki"><i class="glyphicon glyphicon-education"></i> Matura</a></li>
             <li class="menu"><a href="http://localhost/?url=links"><i class="glyphicon glyphicon-link"></i> Linki</a></li> 

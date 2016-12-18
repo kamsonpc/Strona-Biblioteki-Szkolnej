@@ -148,5 +148,8 @@ h3 {
   cursor: pointer;
 }
 .dropdown-menu {
-  background: #dfa285 !important;
+  background: #d4835d !important;
+}
+.dropdown-menu > li > a:hover {
+  background: #a1502a !important;
 }
