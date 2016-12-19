@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Template</title>	
+	<title>Biblioteka ZST</title>	
         <!--------------------------CZCIONKI--------------------->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700&subset=latin-ext" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Lato:400,100,900,700' rel='stylesheet' type='text/css'>
@@ -47,9 +47,9 @@
                   </a>
                         <ul class="d-menu dropdown-menu">
                         <li class="menu"><a class="dropdown-item" href="http://localhost/?url=zbiory-ksiazki">Książki</a></li>
-                        <li class="menu"><a class="dropdown-item" href="#">Czasopisma</a></li>
-                        <li class="menu"><a class="dropdown-item" href="#">Multimedia</a></li>
-                        <li class="menu"><a class="dropdown-item" href="#">Filmoteka</a></li>
+                              <li class="menu"><a class="dropdown-item" href="http://localhost/?url=zbiory-czasopisma">Czasopisma</a></li>
+                              <li class="menu"><a class="dropdown-item" href="http://localhost/?url=zbiory-multimedia">Multimedia</a></li>
+                              <li class="menu"><a class="dropdown-item" href="http://localhost/?url=zbiory-filmoteka">Filmoteka</a></li>
                         </ul>
             <li class="menu"><a href="http://localhost/?url=reading"><i class="glyphicon glyphicon-bookmark"></i> Lektury</a></li> 
             <li class="menu"><a href="http://localhost/?url=teczki"><i class="glyphicon glyphicon-education"></i> Matura</a></li>
@@ -131,8 +131,6 @@
         <a href="http://culture.pl/"><img src="img/culture.jpg" alt="culture.pl" class="img-responsive"></a>
         <h1 class="books-slider">Nowości Czytelnicze :</h1>
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
-
-        <!-- Ksiazki -->
           <div class="carousel-inner" role="listbox">
                 <?php
                 require_once 'includes/dbconnect.php';
