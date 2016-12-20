@@ -1,5 +1,5 @@
 <?php
-include("includes/panel.php");
+include_once("includes/panel.php");
 ?>
 <div class="jumbotron">
 <h2>Aktulane Nowości:</h2>
@@ -13,21 +13,17 @@ include("includes/panel.php");
                   </tr>
 
 <?php
-require_once 'includes/dbconnect.php';
-
-$polaczenie=mysql_connect($host,$db_user,$db_password) 
-      or 
-      die("Niepowodzenie polaczenia"."<br>"."Error".mysql_error());
-$db=mysql_select_db($db_name,$polaczenie) or die('Nie mogę połączyć się z bazą danych<br />Błąd: '.mysql_error());     
+include('includes/dbconnect.php');
 $query = "SELECT * FROM `books`";
 $books_list="";
-     $result = mysql_query($query);
-      while($rekord = mysql_fetch_array( $result ))
+     $rezultat = $polaczenie->query($query);
+      while($rekord =$rezultat->fetch_array())
       {  
             $books_list .= '<tr><td><input name='.$rekord[0].' type="checkbox" name="check_list[]" value=""></td><td>'.$rekord[1].'</td><td>'.$rekord[2].'</td></tr>';
       }
       echo $books_list;
-mysql_close($polaczenie);
+      $rezultat->close();
+$polaczenie->close();
 ?>
                   
             </table>
@@ -38,24 +34,17 @@ mysql_close($polaczenie);
 <?php
 if(isset($_POST['delete']))
 {
-      require_once 'includes/dbconnect.php';
-
-      $polaczenie=mysql_connect($host,$db_user,$db_password) 
-            or 
-            die("Niepowodzenie polaczenia"."<br>"."Error".mysql_error());
-      $db=mysql_select_db($db_name,$polaczenie) or die('Nie mogę połączyć się z bazą danych<br />Błąd: '.mysql_error());     
+      include('includes/dbconnect.php');
       foreach ($_POST as $name => $value)
       {     if($name !='delete')
             {
-            $sql = "DELETE FROM `books` WHERE id_book=$name";
-            mysql_query($sql);
+            $query = "DELETE FROM `books` WHERE id_book=$name";
+            $polaczenie->query($query);
             }
            
       }
-      mysql_close($polaczenie);
+      $polaczenie->close();
 }
-?>
-<?php
 if(isset($_POST['submit-book']))
 {     
       $form_is_ready=true;
@@ -100,21 +89,17 @@ if(isset($_POST['submit-book']))
               <strong>Bład!</strong>Nie wrzucono pliku.
               </div>";
       }
-      require_once 'includes/dbconnect.php';
-
-      $polaczenie=mysql_connect($host,$db_user,$db_password) 
-            or 
-            die("Niepowodzenie polaczenia"."<br>"."Error".mysql_error());
-      $db=mysql_select_db($db_name,$polaczenie) or die('Nie mogę połączyć się z bazą danych<br />Błąd: '.mysql_error());     
+      include('includes/dbconnect.php');
       @$query = "INSERT INTO `books` (`id_book`, `name`, `author`, `describe`,`img_src`) VALUES (NULL, '$name', '$autor', '$describe','$img_src')";
 
       if($form_is_ready==true)
       {
-            if(mysql_query($query))
+            if($polaczenie->query($query))
             {
                   echo "<br><br><div class='alert alert-success'>
                        <strong>Sukcess!</strong> Dodano książke.
                       </div>";
+                  $polaczenie->close();
 
             }
       }
@@ -123,6 +108,7 @@ if(isset($_POST['submit-book']))
             echo "<br><br><div class='alert alert-danger'>
                     <strong>Bład!</strong> Nie dodano książki.
                     </div>";
+            $polaczenie->close();
 
       }
 }   

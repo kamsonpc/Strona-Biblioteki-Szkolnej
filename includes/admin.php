@@ -1,5 +1,5 @@
 <?php
-      include('includes/panel.php');
+      include_once('includes/panel.php');
 ?>
 <div class="jumbotron">
       <h2>Aktulane Artykuły:</h2>
@@ -14,21 +14,17 @@
                         </tr>
 
 <?php
-require_once 'includes/dbconnect.php';
-
-$polaczenie=mysql_connect($host,$db_user,$db_password) 
-      or 
-      die("Niepowodzenie polaczenia"."<br>"."Error".mysql_error());
-$db=mysql_select_db($db_name,$polaczenie) or die('Nie mogę połączyć się z bazą danych<br />Błąd: '.mysql_error());     
+include('includes/dbconnect.php');    
 $query = "SELECT * FROM `news`";
 $article_list="";
-$result = mysql_query($query);
-while($rekord = mysql_fetch_array( $result ))
+$result = $polaczenie->query($query);
+while($rekord = $result->fetch_array())
 {  
       $article_list .= '<tr><td><input name='.$rekord[0].' type="checkbox" name="check_list[]" value=""></td><td>'.$rekord[1].'</td><td>'.$rekord[3].'</td><td>'.$rekord[2].'</td></tr>';
 }
 echo $article_list;
-mysql_close($polaczenie);
+$result->close();
+$polaczenie->close();
 ?>
 
 </table>
@@ -39,28 +35,16 @@ mysql_close($polaczenie);
 <?php
 if(isset($_POST['delete']))
 {
-      require_once 'includes/dbconnect.php';
-
-      $polaczenie=mysql_connect($host,$db_user,$db_password) 
-            or 
-            die("Niepowodzenie polaczenia"."<br>"."Error".mysql_error());
-      $db=mysql_select_db($db_name,$polaczenie) or die('Nie mogę połączyć się z bazą danych<br />Błąd: '.mysql_error());     
+      include('includes/dbconnect.php');
       foreach ($_POST as $name => $value)
       {     if($name !='delete')
             {
-            $sql = "DELETE FROM `news` WHERE id=$name";
-            mysql_query($sql);
+            $query = "DELETE FROM `news` WHERE id=$name";
+            $polaczenie->query($sql);
             }
-
       }
-      mysql_close($polaczenie);
-      }
-?>
-
-
-
-<?php
-
+      $polaczenie->close();
+}
 if(isset($_POST['submit-article']))
 {     $form_is_ready=true;
       $header=$_POST['article-head'];
@@ -86,13 +70,13 @@ if(isset($_POST['submit-article']))
               </div>";
             $form_is_ready=false;
       }
-       if($_FILES['plik']['size']>500000)
-       {
+      if($_FILES['plik']['size']>500000)
+      {
              $form_is_ready=false;
              echo "<br><br><div class='alert alert-danger'>
               <strong>Bład!</strong> Plik za duży.
               </div>";
-       }
+      }
       if(is_uploaded_file($plik_tmp)&&($form_is_ready==true))
       {       
             move_uploaded_file($plik_tmp, "upload/$plik_nazwa"); 
@@ -104,23 +88,19 @@ if(isset($_POST['submit-article']))
               <strong>Bład!</strong>Nie wrzucono pliku.
               </div>";
       }
-      require_once 'includes/dbconnect.php';
-
-      $polaczenie=mysql_connect($host,$db_user,$db_password) 
-            or 
-            die("Niepowodzenie polaczenia"."<br>"."Error".mysql_error());
-      $db=mysql_select_db($db_name,$polaczenie) or die('Nie mogę połączyć się z bazą danych<br />Błąd: '.mysql_error());
+      include('includes/dbconnect.php');
       $date = date("Y-m-d");      
 
-      @$query = "INSERT INTO `news` (`id`, `nazwa`, `data`, `autor`, `tresc`,`img`) VALUES (NULL, '$header', '$date', '$autor', '$content','$img_src')";
+      $query = "INSERT INTO `news` (`id`, `nazwa`, `data`, `autor`, `tresc`,`img`) VALUES (NULL, '$header', '$date', '$autor', '$content','$img_src')";
       
        if($form_is_ready==true)
        {
-            if(mysql_query($query))
+            if($polaczenie->query($query))
             {
                   echo "<br><br><div class='alert alert-success'>
                        <strong>Sukcess!</strong> Dodano artykuł.
                       </div>";
+                  $polaczenie->close();
 
             }
       }
@@ -129,6 +109,7 @@ if(isset($_POST['submit-article']))
                   echo "<br><br><div class='alert alert-danger'>
                     <strong>Bład!</strong> Nie dodano artykułu.
                     </div>";
+                   $polaczenie->close();
 
       }
 }   

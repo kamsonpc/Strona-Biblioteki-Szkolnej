@@ -1,15 +1,13 @@
-
-                  <?php
-
-                  if(isset($_POST['logout']))
-                  {
-                        $_SESSION['zalogowany']=false;
-                  }
-                  if($_SESSION['zalogowany']!=true)
-                  {
-                        header("Location:http://localhost/?url=admin"); 
-                  }
-                  ?>
+<?php
+if(isset($_POST['logout']))
+{
+$_SESSION['zalogowany']=false;
+}
+if($_SESSION['zalogowany']!=true)
+{     
+header("Location:http://localhost/?url=admin"); 
+}
+?>
                   <div class="jumbotron">
                   <h2><i class="glyphicon glyphicon-list-alt"></i> PANEL ADMINISTRATORA</h2>
                         <br>

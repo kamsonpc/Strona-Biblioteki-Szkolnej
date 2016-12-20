@@ -68,59 +68,59 @@
         </div>   
         <div id="content" class="col-md-8">
 <?php
-        include('includes/sessions.php');
-        $url=@$_GET['url']; 
-        switch($url)
-        {
-            case "home":
-                include("includes/home.php");
-            break;
-            case "admin":
-                include("includes/admin-login.php");
-            break;
-            case "admin-articles":
-                    include("includes/admin.php");
-            break;
-            case "links":
-                 include("includes/links.php");
-            break; 
-            case "reading":
-                    include("includes/reading.php");
-            break;
-            case "contact":
-                    include("includes/contact.php");
-            break;
-            case "admin-folder":
-                    include("includes/admin-teczki.php");
-            break;
-            case "panel":
-                    include("includes/panel.php");
-            break;
-            case "teczki":
-                    include("includes/teczki.php");
-            break;
-            case "zbiory-ksiazki":
-                    include("includes/zbiory-ksiazki.php");
-            break;
-            case "zbiory-czasopisma":
-                    include("includes/zbiory-czasopisma.php");
-            break;
-            case "zbiory-filmoteka":
-                    include("includes/zbiory-filmoteka.php");
-            break;
-            case "zbiory-multimedia":
-                    include("includes/zbiory-multimedia.php");
-            break;
-            case "admin-books":
-                    include("includes/admin-books.php");
-            break;
-            case "book":
-                    include("includes/book.php");
-            break;
-            default:
-                include("includes/home.php");
-            break;
-        }
+  include('includes/sessions.php');
+  $url=@$_GET['url']; 
+  switch($url)
+  {
+      case "home":
+          include("includes/home.php");
+      break;
+      case "admin":
+          include("includes/admin-login.php");
+      break;
+      case "admin-articles":
+              include("includes/admin.php");
+      break;
+      case "links":
+           include("includes/links.php");
+      break; 
+      case "reading":
+              include("includes/reading.php");
+      break;
+      case "contact":
+              include("includes/contact.php");
+      break;
+      case "admin-folder":
+              include("includes/admin-teczki.php");
+      break;
+      case "panel":
+              include("includes/panel.php");
+      break;
+      case "teczki":
+              include("includes/teczki.php");
+      break;
+      case "zbiory-ksiazki":
+              include("includes/zbiory-ksiazki.php");
+      break;
+      case "zbiory-czasopisma":
+              include("includes/zbiory-czasopisma.php");
+      break;
+      case "zbiory-filmoteka":
+              include("includes/zbiory-filmoteka.php");
+      break;
+      case "zbiory-multimedia":
+              include("includes/zbiory-multimedia.php");
+      break;
+      case "admin-books":
+              include("includes/admin-books.php");
+      break;
+      case "book":
+              include("includes/book.php");
+      break;
+      default:
+          include("includes/home.php");
+      break;
+  }
 ?>            
         </div>   
         <div id="recommend" class="col-md-2 hidden-sm hidden-xs">
@@ -132,65 +132,60 @@
         <h1 class="books-slider">Nowości Czytelnicze :</h1>
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner" role="listbox">
-                <?php
-                require_once 'includes/dbconnect.php';
-
-                $polaczenie=mysql_connect($host,$db_user,$db_password) 
-                      or 
-                      die("Niepowodzenie polaczenia"."<br>"."Error".mysql_error());
-                $db=mysql_select_db($db_name,$polaczenie) or die('Nie mogę połączyć się z bazą danych<br />Błąd: '.mysql_error()); ;
-
-                $query = mysql_query("select * from books");
-                $slider="";
-                $first_book=false;
-                while($rekord = mysql_fetch_array($query))
-                {     $adres="http://localhost/?url=book&&id=".$rekord[0];
-                      if($first_book==false)
-                      {       
-                            $slider .= "<div class='item active'>
-                            <a href='$adres'><img class='img-responsive img-slider'  src='$rekord[4]' alt='zdjecie biblioteki'></a>
-                            </div>";
-                            $first_book=true;
-                      }
-                      else
-                      {
-                            $slider .= "<div class='item'>
-                            <a href='$adres'><img class='img-responsive img-slider'  src='$rekord[4]' alt='zdjecie biblioteki'></a>
-                            </div>";  
-                      }
-              
-                }
-                echo $slider; 
-                mysql_close($polaczenie);
-                ?>
+<?php
+include('includes/dbconnect.php');
+$query ="select * from books";
+$rezultat = $polaczenie->query($query);
+$slider="";
+$first_book=false;
+while($rekord = $rezultat -> fetch_array())
+{     $adres="http://localhost/?url=book&&id=".$rekord[0];
+if($first_book==false)
+{       
+    $slider .= "<div class='item active'>
+    <a href='$adres'><img class='img-responsive img-slider'  src='$rekord[4]' alt='zdjecie biblioteki'></a>
+    </div>";
+    $first_book=true;
+}
+else
+{
+    $slider .= "<div class='item'>
+    <a href='$adres'><img class='img-responsive img-slider'  src='$rekord[4]' alt='zdjecie biblioteki'></a>
+    </div>";  
+}
+}
+echo $slider; 
+$rezultat->close();
+$polaczenie->close();
+?>
             </div>
             </div>
         </div>
     </div>         
 </div>
-  <footer class="footer">
-        <a id="back-to-top" class="btn btn-primary btn-lg back-to-top hidden-sm hidden-xs" role="button" title="" >
-              <span class="glyphicon glyphicon-chevron-up"></span>
-        </a>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12 col-xs-12"><h3>Skontaktuj się z naszą biblioteką!</h3></div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-xs-12 text-centered">
-                      <i class="glyphicon glyphicon-home"></i>   ul. Mickiewicza 67 Leżajsk
-                </div>
-                <div class="col-md-4 col-xs-12 text-centered">
-                      <i class="glyphicon glyphicon-earphone"></i>  (17) 240 61 23
-                </div>
-                <div class="col-md-4 col-xs-12 text-centered">
-                      <i class="glyphicon glyphicon-envelope"></i>   biblioteka@zst.lezajsk.pl
-                </div>
-            </div>
-            <div class="row">
-                Copyright &copy; 2016 by KamsonPC
-            </div>
-        </div>
-    </footer>
+<footer class="footer">
+  <a id="back-to-top" class="btn btn-primary btn-lg back-to-top hidden-sm hidden-xs" role="button" title="" >
+        <span class="glyphicon glyphicon-chevron-up"></span>
+  </a>
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12 col-xs-12"><h3>Skontaktuj się z naszą biblioteką!</h3></div>
+      </div>
+      <div class="row">
+          <div class="col-md-4 col-xs-12 text-centered">
+                <i class="glyphicon glyphicon-home"></i>   ul. Mickiewicza 67 Leżajsk
+          </div>
+          <div class="col-md-4 col-xs-12 text-centered">
+                <i class="glyphicon glyphicon-earphone"></i>  (17) 240 61 23
+          </div>
+          <div class="col-md-4 col-xs-12 text-centered">
+                <i class="glyphicon glyphicon-envelope"></i>   biblioteka@zst.lezajsk.pl
+          </div>
+      </div>
+      <div class="row">
+          Copyright &copy; 2016 by KamsonPC
+      </div>
+  </div>
+</footer>
 </body>
 </html>

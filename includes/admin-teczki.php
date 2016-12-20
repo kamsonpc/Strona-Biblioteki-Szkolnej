@@ -1,25 +1,20 @@
 <?php
-include('includes/panel.php');
-?>
-<?php
+include_on('includes/panel.php');
+
 
 if(isset($_POST['folder-submit']))
 {
-      require_once 'includes/dbconnect.php';
-
-      $polaczenie=mysql_connect($host,$db_user,$db_password) 
-            or 
-            die("Niepowodzenie polaczenia"."<br>"."Error".mysql_error());
-      $db=mysql_select_db($db_name,$polaczenie) or die('Nie mogę połączyć się z bazą danych<br />Błąd: '.mysql_error()); 
+      include('includes/dbconnect.php');
       $name = $_POST['folder-name'];
       $content = $_POST['folder-content'];
       
       $query = "INSERT INTO `folder` (`id_folder`, `name`, `content`) VALUES (NULL,'$name','$content')";
-      if(mysql_query($query))
+      if($polaczenie->query($query))
       {
             echo "<br><br><div class='alert alert-success'>
                        <strong>Sukcess!</strong> Dodano Teczki.
                       </div>";
+            $polaczenie->close();
 
       }
       else
@@ -27,6 +22,7 @@ if(isset($_POST['folder-submit']))
             echo "<br><br><div class='alert alert-danger'>
                     <strong>Bład!</strong> Nie dodano teczek.
                     </div>";
+            $polaczenie->close();
 
       }
 }

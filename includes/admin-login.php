@@ -1,9 +1,4 @@
-<?php
-if(isset($_SESSION['zalogowany'])&&($_SESSION['zalogowany']==true))
-{
-      header("Location:http://localhost/?url=admin-articles"); 
-}
-?>
+
 <div class="jumbotron"><h2><i class="glyphicon glyphicon-user"></i> Zaloguj się do panelu Administratora</h2>
 <br>
 <br>
@@ -30,10 +25,9 @@ if(isset($_SESSION['zalogowany'])&&($_SESSION['zalogowany']==true))
       <br>   
 </form>
 <?php
-
-      if(isset($_SESSION['login_e']))
-      {
-           echo $_SESSION['login_e'];
-      }
+if(isset($_SESSION['login_e']))
+{
+      echo $_SESSION['login_e'];
+}
 ?>
 </div>
